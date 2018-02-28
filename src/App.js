@@ -1,22 +1,36 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import { PropTypes } from "prop-types";
+import "./App.css";
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      name: ['M', 'E', 'R', 'N'],
-    };
-  }
+class ShowList extends Component {
   render() {
     return (
       <div>
-        {this.state.name.map((n, i) => <h2 key={i}>{n}</h2>)}
-        {this.state.name.reduce((prev, next) => prev + next, [])}
-        <h1>Welcome to React</h1>
+        <ul>
+          {this.props.names.map(name => {
+            return <li>{name}</li>;
+          })}
+        </ul>
       </div>
     );
   }
 }
+
+class App extends Component {
+  render() {
+    var name = "Tyler McGinnis";
+    var friends = ["Ean Platter", "Murphy Randall", "Merrick Christensen"];
+    return (
+      <div>
+        <h3> Name: {name} </h3>
+        <ShowList names={friends} />
+      </div>
+    );
+  }
+}
+
+ShowList.propTypes = {
+  names: PropTypes.arrayOf(PropTypes.shape([PropTypes.string]))
+};
 
 export default App;
