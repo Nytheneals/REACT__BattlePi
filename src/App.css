@@ -1,3 +1,25 @@
 body {
-  font-family: "Museo";
+  font-family: "Museo Sans";
+  background: bisque;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.languages {
+  display: flex;
+  justify-content: center;
+}
+
+.languages li {
+  margin: 10px;
+  font-size: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  list-style: none;
+}
+
+ul {
+  padding: 0;
 }
