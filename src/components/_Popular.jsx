@@ -1,16 +1,25 @@
-import React, { Component } from 'react';
-// import { PropTypes } from 'prop-types';
-
+import React, {Component} from 'react';
+// import {PropTypes} from 'prop-types'; ADDED LIFECYCLE HOOKS
 function SelectedLanguage(props) {
-  const languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python'];
+  const languages = [
+    'All',
+    'JavaScript',
+    'Ruby',
+    'Java',
+    'CSS',
+    'Python'
+  ];
   return (
     <div className="languages">
       {languages.map(lang => (
         <li
-          style={lang === props.select ? { color: 'red' } : null}
+          style={lang === props.select
+          ? {
+            color: 'red'
+          }
+          : null}
           onClick={props.onSelect}
-          key={lang}
-        >
+          key={lang}>
           {lang}
         </li>
       ))}
@@ -22,24 +31,26 @@ class Popular extends Component {
   constructor() {
     super();
     this.state = {
-      selectedLanguage: 'All',
+      selectedLanguage: 'All'
     };
 
-    this.updateLanguage = this.updateLanguage.bind(this);
+    this.updateLanguage = this
+      .updateLanguage
+      .bind(this);
   }
 
   updateLanguage(e) {
     const clicked = e.target.textContent;
-    this.setState({
-      selectedLanguage: clicked,
-    });
+    this.setState({selectedLanguage: clicked});
   }
 
   render() {
     // console.log(this.state);
     return (
       <div className="languages">
-        <SelectedLanguage select={this.state.selectedLanguage} onSelect={this.updateLanguage} />
+        <SelectedLanguage
+          select={this.state.selectedLanguage}
+          onSelect={this.updateLanguage}/>
       </div>
     );
   }
