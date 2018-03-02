@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-// import {PropTypes} from 'prop-types'; ADDED LIFECYCLE HOOKS
+import {PropTypes} from 'prop-types';
+//ADDED LIFECYCLE HOOKS COMPONENT ONE
 function SelectedLanguage(props) {
   const languages = [
     'All',
@@ -27,6 +28,7 @@ function SelectedLanguage(props) {
   );
 }
 
+// COMPONENT TWO
 class Popular extends Component {
   constructor() {
     super();
@@ -54,6 +56,12 @@ class Popular extends Component {
       </div>
     );
   }
+}
+
+//PROPTYPES
+SelectedLanguage.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  style: PropTypes.func.isRequired
 }
 
 export default Popular;
