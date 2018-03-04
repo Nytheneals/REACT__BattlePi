@@ -1,17 +1,26 @@
-import React, { Component } from 'react';
-// import { PropTypes } from 'prop-types';
-import '../App.css';
+import React, {Component} from 'react';
+import {NavLink} from "react-router-dom";
 
-import Popular from './_Popular';
+// NAVLINK IS USED TO DYNAMICALLY CHANGE THE STYLE BASED ON IF THAT STYLE IS
+// ACTIVE.. ACTUALLY COMPOSES IN LINK AND GIVES IT EXTRA PROPERTIES..
 
-class App extends Component {
+class Nav extends Component {
   render() {
     return (
-      <div className="popular">
-        <Popular />
-      </div>
+
+      <ul className="nav">
+        <li>
+          <NavLink exact activeClassName="active" to="/">Home</NavLink>
+        </li>
+        <li>
+          <NavLink exact activeClassName="active" to="/battle">Battle</NavLink>
+        </li>
+        <li>
+          <NavLink exact activeClassName="active" to="/popular">Popular</NavLink>
+        </li>
+      </ul>
     );
   }
 }
 
-export default App;
+export default Nav;

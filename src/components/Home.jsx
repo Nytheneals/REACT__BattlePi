@@ -1,16 +1,16 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import "../App.css";
+import {Link} from "react-router-dom";
 
-import Popular from "./_Popular";
-
-class Nav extends Component {
+class Home extends Component {
   render() {
     return (
-      <div className="popular">
-        <Popular />
+      <div className='home-container'>
+        <h1>Github Battle: Battle your friends... and stuff.</h1>
+        <Link className='button' to='/battle'>Battle</Link>
       </div>
-    );
+    )
   }
 }
 
-export default Nav;
+export default Home;
