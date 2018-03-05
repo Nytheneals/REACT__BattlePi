@@ -1,4 +1,6 @@
 import React, {Component} from "react";
+// const PropTypes = require('prop-types');
+import {Link} from "react-router-dom";
 
 function PlayerPreview(props) {
   return (
@@ -70,7 +72,7 @@ class PlayerInput extends Component {
 
 // MAIN BATTLE COMPONENT / PARENT COMPONENT
 
-class Battle extends React.Component {
+class Battle extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -86,29 +88,59 @@ class Battle extends React.Component {
   }
   // IN THIS CONTEXT ID = PLAYERONE/PLAYERTWO ,  USERNAME = USERNAME VALUE. THIS
   // HANDELSUBMIT FUNCTION WILL ONLY UPDATE THE THE PARENT STATE. ITS MORE LIKE AN
-  // IF STATEMENT ONLY UPDATING THE VALUES THAT WE NEED handleSubmit() {   this
-  // .setState(function (id, username) {       let newState = {} newState[id +
-  // 'Name'] = username;       newState[id + 'Image'] = `https://github.com
-  // ${username} .png?size=200`;       return newState; }); }
+  // IF STATEMENT ONLY UPDATING THE VALUES THAT WE NEED
 
   handleSubmit(id, username) {
     this
       .setState(function () {
-        var newState = {};
+        const newState = {};
         newState[id + 'Name'] = username;
         newState[id + 'Image'] = 'https://github.com/' + username + '.png?size=200'
         return newState;
       });
   }
+
+  handleReset(id) {
+    this
+      .setState(function () {
+        var newState = {};
+        newState[id + 'Name'] = '';
+        newState[id + 'Image'] = null;
+        return newState;
+      })
+  }
   render() {
-    var playerOneName = this.state.playerOneName;
-    var playerTwoName = this.state.playerTwoName;
+    const match = this.props.match;
+    const playerOneName = this.state.playerOneName;
+    const playerOneImage = this.state.playerOneImage;
+    const playerTwoName = this.state.playerTwoName;
+    const playerTwoImage = this.state.playerTwoImage;
+
     return (
       <div>
         <div className='row'>
           {!playerOneName && <PlayerInput id='playerOne' label='Player One' onSubmit={this.handleSubmit}/>}
+          {playerOneImage !== null && <PlayerPreview
+            avatar={playerOneImage}
+            username={playerOneName}
+            onReset={this.handleReset}
+            id='playerOne'/>}
           {!playerTwoName && <PlayerInput id='playerTwo' label='Player Two' onSubmit={this.handleSubmit}/>}
+          {playerTwoImage !== null && <PlayerPreview
+            avatar={playerTwoImage}
+            username={playerTwoName}
+            onReset={this.handleReset}
+            id='playerOne'/>}
         </div>
+        {playerOneImage && playerTwoImage && <Link
+          className='button'
+          to={{
+          pathname: match.url + '/results',
+          search: '?playerOneName=' + playerOneName + '&playerTwoName=' + playerTwoName
+        }}>
+          Battle
+        </Link>}
+
       </div>
     )
   }

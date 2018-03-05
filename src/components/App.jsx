@@ -5,6 +5,7 @@ import Nav from "./Nav";
 import Home from "./Home";
 import Battle from "./Battle";
 import Popular from "./Popular";
+// import Results from "./Results";
 
 class App extends Component {
   render() {
