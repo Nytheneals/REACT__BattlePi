@@ -65,6 +65,10 @@ class Battle extends Component {
     this.handleSubmit = this
       .handleSubmit
       .bind(this);
+
+    this.handleReset = this
+      .handleReset
+      .bind(this);
   }
   // IN THIS CONTEXT ID = PLAYERONE/PLAYERTWO ,  USERNAME = USERNAME VALUE. THIS
   // HANDELSUBMIT FUNCTION WILL ONLY UPDATE THE THE PARENT STATE. ITS MORE LIKE AN

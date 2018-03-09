@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {PropTypes} from "prop-types";
 import api from "../utils/api"; // FOR OUR AJAX CALLS
+import Loading from './Loading';
 
 // RENDERS OUR NAV LANGUAGES VIEW
 function SelectedLanguage(props) {
@@ -108,9 +109,7 @@ class Popular extends Component {
         <SelectedLanguage
           select={this.state.selectedLanguage}
           onSelect={this.updateLanguage}/> {!this.state.repos
-          ? (
-            <p>LOADING!</p>
-          )
+          ? (<Loading/>)
           : (<RepoGrid repos={this.state.repos}/>)}
       </div>
     );

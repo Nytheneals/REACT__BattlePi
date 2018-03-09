@@ -4,9 +4,29 @@ import {Link} from "react-router-dom";
 import queryString from "query-string";
 import api from "../utils/api"; // FOR OUR AJAX CALLS
 import PlayerPreview from './PlayerPreview';
+import Loading from './Loading';
+
+// RESULTS PROFILE
+function Profile(props) {
+  const info = props.info;
+  return (
+    <PlayerPreview username={info.login} avatar={info.avatar_url}>
+      <ul className='space-list-items'>
+        {info.name && <li>{info.name}</li>}
+        {info.location && <li>{info.location}</li>}
+        {info.company && <li>{info.company}</li>}
+        <li>Followers: {info.followers}</li>
+        <li>Following: {info.following}</li>
+        <li>Public Repos: {info.public_repos}</li>
+        {info.blog && <li>
+          <a href={info.blog}>{info.blog}</a>
+        </li>}
+      </ul>
+    </PlayerPreview>
+  )
+}
 
 // RESULTS PLAYER
-
 function Player(props) {
   return (
     <div>
@@ -18,23 +38,11 @@ function Player(props) {
     </div>
   )
 }
+
 Player.propTypes = {
   label: PropTypes.string.isRequired,
   score: PropTypes.number.isRequired,
   profile: PropTypes.object.isRequired
-}
-
-function Profile(props) {
-  return (
-    <div>
-      <h1 className='header'>{props.label}</h1>
-      <h3 style={{
-        textAlign: 'center'
-      }}>Score: {props.score}</h3>
-
-      <PlayerPreview info={props.profile}/>
-    </div>
-  )
 }
 
 // RESULTS COMPONENT
@@ -69,9 +77,7 @@ class Results extends Component {
     const error = this.state.error;
     const loading = this.state.loading;
     if (loading === true) {
-      return (
-        <p>Loading</p>
-      );
+      return (<Loading/>);
     }
 
     if (error) {
